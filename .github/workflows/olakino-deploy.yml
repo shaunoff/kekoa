@@ -22,7 +22,10 @@ jobs:
         uses: styfle/cancel-workflow-action@0.11.0
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: main
       - name: 🦋 Setup flyctl
         uses: superfly/flyctl-actions/setup-flyctl@master
       - name: 🚀 Deploy to prod
-        run: flyctl deploy --strategy bluegreen --wait-timeout=180 --remote-only -c apps/olakino/fly.toml
+        run: flyctl deploy --remote-only -c apps/olakino/fly.toml
