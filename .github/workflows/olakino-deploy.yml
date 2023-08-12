@@ -1,0 +1,28 @@
+name: 🚀 Gumby Prod Deploy
+
+on:
+  push:
+    branches: ['main']
+    paths:
+      - 'apps/olakino/**'
+      - 'packages/ui/**'
+      - 'packages/tailwind-config/**'
+      - '.github/workflows/olakino-deploy.yml'
+  workflow_dispatch:
+
+env:
+  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+jobs:
+  deploy:
+    name: Deploy Olakino
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.11.0
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+      - name: 🦋 Setup flyctl
+        uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: 🚀 Deploy to prod
+        run: flyctl deploy --strategy bluegreen --wait-timeout=180 --remote-only -c apps/olakino/fly.toml
