@@ -9,7 +9,7 @@
 <h1>Web</h1>
 <div>
   <Button class="m-2" size="sm">Submit</Button>
-  <Title variant="h4">dhjdhdjkhdkjhdkj</Title>
+  <Title variant="h4">WooHoo</Title>
   <div class="bg-primary text-primary-foreground">hfkjdhfkj</div>
   <div class="m-2 gap-y-4 flex flex-col">
     <Input type="email" placeholder="email" label="First Name" on:change={testy} />
